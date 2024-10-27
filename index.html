@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YMap</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .btn.liked {
+            background-color: #ff4757;
+            color: white;
+        }
+        .action-btn {
+            font-size: 1.5rem;
+        }
+        .section-divider {
+            margin: 2rem 0;
+            border-top: 2px solid #ccc;
+        }
+        .navbar-custom {
+            background-color: #161515;
+            border-top: 2px solid #161515;
+            font-size: 1.2rem;
+            height: 70px;
+            box-shadow: 0px -2px 5px rgba(0,0,0,0.1);
+        }
+        .nav-link {
+            color: #333;
+            text-align: center;
+            position: relative;
+        }
+        .nav-link::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        .nav-home::before {
+            background-image: url('https://via.placeholder.com/30?text=🏡');
+        }
+        .nav-videos::before {
+            background-image: url('https://via.placeholder.com/30?text=📹');
+        }
+        .nav-posts::before {
+            background-image: url('https://via.placeholder.com/30?text=✒️');
+        }
+        .nav-notifications::before {
+            background-image: url('https://via.placeholder.com/30?text=🔔');
+        }
+        .nav-profile::before {
+            background-image: url('https://via.placeholder.com/30?text=👤');
+        }
+    </style>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a1a; /* لون الخلفية داكن */
+        color: #f1f1f1; /* لون النص */
+    }
+    .container {
+        margin-top: 20px;
+    }
+    .zikr-card {
+        border: 1px solid #444; /* لون الحدود */
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: #2b2b2b; /* لون الخلفية للبطاقات */
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* ظل داكن */
+    }
+    .zikr-card h5 {
+        color: #00bcd4; /* لون عنوان الذكر */
+    }
+    .btn {
+        background-color: #007bff; /* لون أزرار */
+        border-color: #007bff; /* لون حدود الأزرار */
+    }
+    .btn:hover {
+        background-color: #0056b3; /* لون الأزرار عند التمرير */
+        border-color: #0056b3; /* لون حدود الأزرار عند التمرير */
+    }
+</style>
+
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a; /* لون الخلفية داكن */
+            color: #f1f1f1; /* لون النص */
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .zikr-card {
+            border: 1px solid #444; /* لون الحدود */
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #2b2b2b; /* لون الخلفية للبطاقات */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* ظل داكن */
+        }
+        .zikr-card h5 {
+            color: #00bcd4; /* لون عنوان الذكر */
+        }
+        .btn {
+            background-color: #007bff; /* لون أزرار */
+            border-color: #007bff; /* لون حدود الأزرار */
+        }
+        .btn:hover {
+            background-color: #0056b3; /* لون الأزرار عند التمرير */
+            border-color: #0056b3; /* لون حدود الأزرار عند التمرير */
+        }
+    </style>
+    
+
+
+<div class="container mt-5">
+    <h2>YMap</h2>
+    <p>مرحباً بك في صفحة YMap. هذه الصفحة تعرض منشورات وفيديوهات مختارة.</p>
+</div>
+
+<!-- قسم المنشورات المميزة -->
+<div class="container mt-5" id="featured-posts">
+    <h2>المنشورات المميزة</h2>
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="post card shadow-sm">
+                <img src="https://via.placeholder.com/500" alt="Post Image" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">عنوان المنشور المميز</h5>
+                    <p class="card-text">وصف المنشور هنا...</p>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-light action-btn" data-post-id="1" onclick="likePost(this, 1)">
+                            <i class="fas fa-heart"></i> <span class="likes-count">0</span>
+                        </button>
+                        <button class="btn btn-light action-btn" data-toggle="collapse" data-target="#comments1">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="btn btn-light action-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="btn btn-light action-btn">
+                            <i class="fas fa-share"></i>
+                        </button>
+                    </div>
+                    <div class="collapse mt-2" id="comments1">
+                        <textarea class="form-control" placeholder="اكتب تعليقك هنا..." rows="2"></textarea>
+                        <button class="btn btn-secondary mt-2" onclick="postComment(this)">نشر التعليق</button>
+                        <div class="comments-section mt-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+
+<!-- شريط التنقل السفلي -->
+<nav class="navbar navbar-expand navbar-custom fixed-bottom">
+    <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link nav-home" href="index.html"><i class="fa-solid fa-house"></i>
+        <li class="nav-item"><a class="nav-link nav-notifications" href="notifications.html"><i class="fa-solid fa-envelope"></i>
+        <li class="nav-item"><a class="nav-link nav-profile" href="profile.html"><i class="fas fa-user"></i></a></li>
+        <li class="nav-item"><a class="nav-link nav-profile" href="settings.html"><i class="fa-solid fa-gear"></i>
+            <li class="nav-item"><a class="nav-link nav-profile" href="featured-posts.html"><i class="fa-solid fa-panorama"></i>
+    </ul>
+</nav>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function likePost(button, postId) {
+        const countSpan = button.querySelector('.likes-count');
+        let count = parseInt(countSpan.innerText);
+        if (button.classList.contains('liked')) {
+            count--;
+            button.classList.remove('liked');
+        } else {
+            count++;
+            button.classList.add('liked');
+        }
+        countSpan.innerText = count;
+    }
+
+    function likeVideo(button) {
+        const countSpan = button.querySelector('.likes-count');
+        let count = parseInt(countSpan.innerText);
+        if (button.classList.contains('liked')) {
+            count--;
+            button.classList.remove('liked');
+        } else {
+            count++;
+            button.classList.add('liked');
+        }
+        countSpan.innerText = count;
+    }
+
+    function postComment(button) {
+        const textarea = button.previousElementSibling;
+        const commentText = textarea.value;
+        if (commentText.trim() !== "") {
+            const commentsSection = button.parentElement.querySelector('.comments-section');
+            const newComment = document.createElement('div');
+            newComment.innerText = commentText;
+            commentsSection.appendChild(newComment);
+            textarea.value = "";
+        }
+    }
+</script>
+
+</body>
+</html>

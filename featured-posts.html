@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المنشورات المميزة</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a; /* لون الخلفية داكن */
+            color: #f1f1f1; /* لون النص */
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .post-card {
+            background-color: #2b2b2b;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: background-color 0.3s ease;
+        }
+        .post-card:hover {
+            background-color: #3a3a3a;
+        }
+        .like-count {
+            font-size: 1.2rem;
+            color: #00bcd4; /* لون عدد الإعجابات */
+        }
+    </style>
+</head>
+<body>
+</style>
+<!-- زر الرجوع إلى الصفحة الرئيسية -->
+<div class="container mt-3">
+   <a href="index.html" class="btn btn-primary btn-sm">
+       <i class="fas fa-arrow-left"></i> الرجوع إلى الرئيسية
+   </a>
+</div>
+</style>
+<!-- زر الرجوع إلى الصفحة الرئيسية -->
+<div class="container mt-3">
+   <a href="create.photo.html" class="btn btn-primary btn-sm">
+    <i class="fa-solid fa-plus"></i> انشاء صورة
+   </a>
+</div>
+
+<div class="container">
+    <h2 class="text-center mb-4">المنشورات المميزة</h2>
+
+    <div id="postsContainer">
+        <!-- المنشورات ستظهر هنا -->
+    </div>
+</div>
+
+<script>
+    // قائمة المنشورات
+    const posts = [
+        { title: "منشور 1", likes: 100 },
+        { title: "منشور 2", likes: 80 },
+        { title: "منشور 3", likes: 50 },
+        { title: "منشور 4", likes: 30 },
+        { title: "منشور 5", likes: 10 }
+    ];
+
+    // دالة لإضافة المنشورات إلى الصفحة
+    function displayPosts() {
+        const postsContainer = document.getElementById('postsContainer');
+        posts.forEach(post => {
+            const postCard = document.createElement('div');
+            postCard.className = 'post-card';
+
+            const titleElement = document.createElement('h5');
+            titleElement.innerText = post.title;
+
+            const likesElement = document.createElement('div');
+            likesElement.className = 'like-count';
+            likesElement.innerText = `عدد الإعجابات: ${post.likes}`;
+
+            postCard.appendChild(titleElement);
+            postCard.appendChild(likesElement);
+            postsContainer.appendChild(postCard);
+
+            // بدء عملية تقليل الإعجابات
+            decreaseLikes(post, likesElement);
+        });
+    }
+
+    // دالة لتقليل عدد الإعجابات تدريجيا
+    function decreaseLikes(post, likesElement) {
+        let currentLikes = post.likes;
+        const interval = setInterval(() => {
+            if (currentLikes > 0) {
+                currentLikes--;
+                likesElement.innerText = `عدد الإعجابات: ${currentLikes}`;
+            } else {
+                clearInterval(interval); // إيقاف العد عندما يصل إلى الصفر
+            }
+        }, 1000); // تقليل الإعجابات كل ثانية
+    }
+
+    // عرض المنشورات عند تحميل الصفحة
+    window.onload = displayPosts;
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

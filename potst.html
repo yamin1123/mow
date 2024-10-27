@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">المنشورات</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a; /* خلفية داكنة */
+            color: #f1f1f1; /* لون النص */
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .btn-share {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            background-color: #007bff; /* لون الزر */
+            color: white;
+        }
+        .modal-header {
+            background-color: #2b2b2b;
+            color: #f1f1f1;
+        }
+        .modal-content {
+            background-color: #2b2b2b;
+            color: #f1f1f1;
+        }
+        .post-card {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444; /* لون الحدود */
+            border-radius: 8px;
+            background-color: #2b2b2b; /* لون الخلفية للبطاقات */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* ظل داكن */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="text-center mb-4" id="pageHeading">قائمة المنشورات</h2>
+
+    <div id="postsContainer">
+        <div class="post-card">
+            <h5 id="postTitle1">عنوان المنشور 1</h5>
+            <img src="https://via.placeholder.com/150" alt="صورة المنشور" class="img-fluid">
+            <p id="postDescription1">وصف المنشور 1.</p>
+        </div>
+        <div class="post-card">
+            <h5 id="postTitle2">عنوان المنشور 2</h5>
+            <img src="https://via.placeholder.com/150" alt="صورة المنشور" class="img-fluid">
+            <p id="postDescription2">وصف المنشور 2.</p>
+        </div>
+    </div>
+
+    <!-- أزرار تغيير اللغة -->
+    <div class="text-center mt-3">
+        <button class="btn btn-secondary" onclick="changeLanguage('ar')">عربي</button>
+        <button class="btn btn-secondary" onclick="changeLanguage('en')">English</button>
+    </div>
+</div>
+
+<!-- زر المشاركة -->
+<button type="button" class="btn btn-primary btn-share" data-toggle="modal" data-target="#shareModal">
+    +
+</button>
+
+<!-- نموذج المشاركة -->
+<div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="shareModalLabel">مشاركة صورة جديدة</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="shareForm">
+                    <div class="form-group">
+                        <label for="imageUpload">تحميل الصورة</label>
+                        <input type="file" class="form-control" id="imageUpload" accept="image/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageTitle">عنوان الصورة</label>
+                        <input type="text" class="form-control" id="imageTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageHashtags">هاشتاج</label>
+                        <input type="text" class="form-control" id="imageHashtags" placeholder="#هاشتاج">
+                    </div>
+                    <button type="submit" class="btn btn-primary">نشر</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function changeLanguage(lang) {
+        if (lang === 'ar') {
+            document.getElementById('pageTitle').innerText = 'المنشورات';
+            document.getElementById('pageHeading').innerText = 'قائمة المنشورات';
+            document.getElementById('postTitle1').innerText = 'عنوان المنشور 1';
+            document.getElementById('postDescription1').innerText = 'وصف المنشور 1.';
+            document.getElementById('postTitle2').innerText = 'عنوان المنشور 2';
+            document.getElementById('postDescription2').innerText = 'وصف المنشور 2.';
+            document.getElementById('shareModalLabel').innerText = 'مشاركة صورة جديدة';
+            document.getElementById('imageTitle').placeholder = 'عنوان الصورة';
+            document.getElementById('imageHashtags').placeholder = '#هاشتاج';
+        } else {
+            document.getElementById('pageTitle').innerText = 'Posts';
+            document.getElementById('pageHeading').innerText = 'Posts List';
+            document.getElementById('postTitle1').innerText = 'Post Title 1';
+            document.getElementById('postDescription1').innerText = 'Description of post 1.';
+            document.getElementById('postTitle2').innerText = 'Post Title 2';
+            document.getElementById('postDescription2').innerText = 'Description of post 2.';
+            document.getElementById('shareModalLabel').innerText = 'Share New Image';
+            document.getElementById('imageTitle').placeholder = 'Image Title';
+            document.getElementById('imageHashtags').placeholder = '#hashtag';
+        }
+    }
+
+    document.getElementById('shareForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // هنا يمكنك إضافة الكود لمعالجة نشر الصورة
+        const imageTitle = document.getElementById('imageTitle').value;
+        const imageHashtags = document.getElementById('imageHashtags').value;
+        const imageUpload = document.getElementById('imageUpload').files[0];
+
+        // قم بمعالجة البيانات كما تحتاج
+        console.log('عنوان الصورة:', imageTitle);
+        console.log('هاشتاج:', imageHashtags);
+        console.log('الصورة:', imageUpload);
+
+        // قم بإغلاق النموذج بعد النشر
+        $('#shareModal').modal('hide');
+        this.reset(); // إعادة تعيين النموذج
+    });
+</script>
+</body>
+</html>
